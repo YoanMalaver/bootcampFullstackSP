@@ -1,1 +1,86 @@
-<p>create-client works!</p>
+<!-- uso de ngModel para mapear el modelo -->
+<div class="container">
+  <form class="border border-dark rounded" name="form1">
+    <h1>{{ title }}</h1>
+    <hr />
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nombres">Nombres</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          name="firts"
+          [(ngModel)]="newClient.firtsNames"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="formGroupExampleInput2">Apellidos</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          name="apellidos"
+          [(ngModel)]="newClient.lastNames"
+        />
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputState">Tipo Identificación</label>
+        <select
+          id="inputState"
+          class="form-control"
+          name="tipo"
+          [(ngModel)]="newClient.typeId"
+        >
+          <option selected>Selecciona</option>
+          <option>CC</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="identificacion">Identificacion</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          name="identificacion"
+          [(ngModel)]="newClient.identificationId"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="newClient.email"
+        />
+      </div>
+      <div class="form-group col-md-3">
+        <label class="form-label" for="phone">Phone number</label>
+        <input
+          type="text"
+          class="form-control"
+          data-mdb-input-mask="+48 999-999-999"
+          name="telefono"
+          [(ngModel)]="newClient.telephone"
+        />
+      </div>
+      <div class="form-group col-md-3 datepicker">
+        <label for="form-label">Fecha de nacimiento</label>
+        <input
+          type="date"
+          name="fechaNacimiento"
+          class="form-control"
+          [(ngModel)]="newClient.dateOfBirth"
+        />
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary col-md-6 form-control"
+      (click)="addClient()"
+    >
+      Crear
+    </button>
+  </form>
+</div>
