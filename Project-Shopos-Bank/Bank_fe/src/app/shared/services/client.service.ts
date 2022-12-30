@@ -17,7 +17,7 @@ export class ClientService {
   }
   //Obtener un solo cliente
   getClient(id: number): Observable<Client> {
-    return this.http.get<Client>(this.url + '/' + id);
+    return this.http.get<Client>(`${this.url}/${id}`);
   }
 
   //Crear un cliente
@@ -26,12 +26,12 @@ export class ClientService {
   }
 
   //Actualizar
-  updateClient(client: Client): Observable<Client> {
-    return this.http.put<Client>(this.url, client);
+  updateClient(client: Client) {
+    return this.http.put(`${this.url}/${client.id}`, client);
   }
 
   //Borrar
   deleteClient(client: Client): Observable<Client> {
-    return this.http.put<Client>(this.url, client);
+    return this.http.put<Client>(`${this.url}/${client.id}`, client);
   }
 }
