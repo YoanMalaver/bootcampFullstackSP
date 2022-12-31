@@ -32,6 +32,12 @@ export class ManageClientComponent implements OnInit {
 
   updateClient(): void {
     this._clientService.updateClient(this.load).subscribe((res) => {
+      this._router.navigate(['/manage-client', this.load.id]);
+    });
+  }
+
+  deleteClient(client: Client): void {
+    this._clientService.deleteClient(client.id).subscribe((res) => {
       this._router.navigate(['view-clients']);
     });
   }

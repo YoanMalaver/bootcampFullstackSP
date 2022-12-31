@@ -31,7 +31,7 @@ export class ClientService {
   }
 
   //Borrar
-  deleteClient(client: Client): Observable<Client> {
-    return this.http.put<Client>(`${this.url}/${client.id}`, client);
+  deleteClient(id: number) {
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

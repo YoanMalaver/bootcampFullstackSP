@@ -46,7 +46,7 @@
           [(ngModel)]="load.identificationId"
         />
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-7">
         <label for="inputEmail">Email</label>
         <input
           type="email"
@@ -55,7 +55,7 @@
           [(ngModel)]="load.email"
         />
       </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-5">
         <label class="form-label" for="phone">Phone number</label>
         <input
           type="text"
@@ -72,15 +72,23 @@
           name="fechaNacimiento"
           class="form-control"
           [(ngModel)]="load.dateOfBirth"
+          (ngModelChange)="load.dateOfBirth = $event"
         />
       </div>
     </div>
     <button
       type="submit"
-      class="btn btn-primary col-md-6 form-control"
+      class="btn btn-primary col-md-5 form-control"
       (click)="updateClient()"
     >
       Actualizar
+    </button>
+    <button
+      type="submit"
+      class="btn btn-danger col-md-6 form-control"
+      (click)="deleteClient(load)"
+    >
+      Eliminar
     </button>
   </form>
 </div>
