@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-size: 14px;
+}
 
+.col-5 {
+  margin-left: 30px;
+}
 /* animaciones */
 
 .animated {
@@ -33,7 +39,6 @@
 }
 form {
   padding: 12px;
-  margin: 25px;
 }
 
 // mediaquerys

@@ -41,4 +41,5 @@ export class ManageClientComponent implements OnInit {
       this._router.navigate(['view-clients']);
     });
   }
+  goBack(): void {}
 }
