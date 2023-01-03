@@ -1,6 +1,8 @@
 package com.challengeshopos.bank.Service;
 
+import com.challengeshopos.bank.Dto.ClientInDTO;
 import com.challengeshopos.bank.Entity.Client;
+import com.challengeshopos.bank.Mapper.ClientInDTOToClient;
 import com.challengeshopos.bank.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,10 @@ public class ClientServiceImplementation implements ClientService {
     @Autowired
     ClientRepository clientRepository;
 
+
     @Override
     public Client createClient(Client client) {
-        return clientRepository.save(client);
+        return this.clientRepository.save(client);
     }
 
     @Override
