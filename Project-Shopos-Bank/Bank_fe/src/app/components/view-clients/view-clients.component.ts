@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ViewClientsComponent implements OnInit {
   // render de los clientes
-  clients!: Client[];
+  clients: Client[] = [];
   //importacion del servicio
   constructor(public _clientService: ClientService, private _router: Router) {}
   ngOnInit(): void {

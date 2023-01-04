@@ -6,6 +6,8 @@ import { ViewClientsComponent } from './view-clients/view-clients.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ManageClientComponent } from './manage-client/manage-client.component';
 import { FormsModule } from '@angular/forms';
+import { ProductComponent } from './product/product.component';
+import { OptionsClientComponent } from './options-client/options-client.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { FormsModule } from '@angular/forms';
     CreateClientComponent,
     ViewClientsComponent,
     ManageClientComponent,
+    ProductComponent,
+    OptionsClientComponent,
   ],
   imports: [CommonModule, AppRoutingModule, FormsModule],
   exports: [NavbarComponent],
