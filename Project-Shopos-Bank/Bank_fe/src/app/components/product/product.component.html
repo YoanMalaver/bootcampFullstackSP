@@ -2,14 +2,20 @@
   Crear Producto
 </button>
 <hr />
-<form action="">
-  <ul class="list-group">
-    <h4>Tipo de cuenta</h4>
-    <li class="list-group-item">Número de Cuenta:</li>
-    <li class="list-group-item">Saldo:</li>
-    <li class="list-group-item">Estado:</li>
-    <li class="list-group-item">Fecha de creación:</li>
-  </ul>
+<div class="row" *ngIf="load.accounts?.length == 0">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert">
+      El cliente aun no tiene productos
+    </div>
+  </div>
+</div>
+<form action="" class="list-group" *ngFor="let account of load.accounts">
+  <h5>{{ account.accountType }}</h5>
+  <li class="list-group-item">Número de Cuenta: {{ account.accountNumber }}</li>
+  <li class="list-group-item">Saldo: {{ account.accountBalance }}</li>
+  <li class="list-group-item">Estado: {{ account.accountStatus }}</li>
+  <li class="list-group-item">Fecha de creación: {{ account.createdDate }}</li>
+
   <div class="d-flex align-items-center justify-content-end accions-buttons">
     <button type="button" class="btn btn-outline-primary">Estado Cuenta</button>
     <button type="button" class="btn btn-outline-success">

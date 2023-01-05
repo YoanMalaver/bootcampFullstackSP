@@ -13,9 +13,10 @@ export class ViewClientsComponent implements OnInit {
   clients: Client[] = [];
   //importacion del servicio
   constructor(public _clientService: ClientService, private _router: Router) {}
+
   ngOnInit(): void {
     this._clientService.getClients().subscribe((res) => (this.clients = res));
-    // this.clientService.getClients().subscribe((res) => console.log(res));
+    this._clientService.getClients().subscribe((res) => console.log(res));
   }
 
   viewClient(idx: number) {

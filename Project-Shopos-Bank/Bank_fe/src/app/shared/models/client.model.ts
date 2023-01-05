@@ -8,6 +8,7 @@ export interface ClientInterface {
   dateOfBirth: Date;
   telephone: string;
   createdDate: Date;
+  accounts: Account[];
 }
 
 export class Client implements ClientInterface {
@@ -20,4 +21,16 @@ export class Client implements ClientInterface {
   dateOfBirth!: Date;
   telephone!: string;
   createdDate!: Date;
+  accounts!: Account[];
+}
+
+export interface Account {
+  id: number;
+  idProduct: number;
+  idClient: number;
+  accountType: string;
+  accountNumber: string;
+  accountBalance: number;
+  accountStatus: string;
+  createdDate: Date;
 }
