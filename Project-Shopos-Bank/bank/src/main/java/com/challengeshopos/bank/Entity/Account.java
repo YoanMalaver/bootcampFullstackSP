@@ -1,9 +1,11 @@
 package com.challengeshopos.bank.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "accounts")
@@ -24,11 +26,16 @@ public class Account {
 
     private String accountType;
     private String accountNumber;
-    private Integer saldo;
-    private String status;
-    private LocalDateTime createdDate;
+    private Integer accountBalance;
+    private String accountStatus;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(value=TemporalType.DATE)
+    private Date createdDate;
 
     public Account() {
+        this.createdDate = new Date();
     }
 
     public int getId() {
@@ -71,27 +78,27 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public Integer getSaldo() {
-        return saldo;
+    public Integer getAccountBalance() {
+        return accountBalance;
     }
 
-    public void setSaldo(Integer saldo) {
-        this.saldo = saldo;
+    public void setAccountBalance(Integer accountBalance) {
+        this.accountBalance = accountBalance;
     }
 
-    public String getStatus() {
-        return status;
+    public String getAccountStatus() {
+        return accountStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 }

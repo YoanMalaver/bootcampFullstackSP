@@ -1,6 +1,5 @@
 package com.challengeshopos.bank.Controllers;
 
-import com.challengeshopos.bank.Dto.ClientInDTO;
 import com.challengeshopos.bank.Entity.Client;
 import com.challengeshopos.bank.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,6 @@ public class ClientController {
     //Inyectar logica de negocio
     @Autowired
     ClientService clientService;
-/*
-    @GetMapping
-    public ResponseEntity<List<Client>> getClients() {
-        return  new ResponseEntity<>(clientService.getAllClients(), HttpStatus.OK);
-    }*/
 
     @GetMapping
     public ResponseEntity<List<Client>> getClients() {

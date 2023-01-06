@@ -1,6 +1,5 @@
 package com.challengeshopos.bank.Service;
 
-import com.challengeshopos.bank.Dto.ClientInDTO;
 import com.challengeshopos.bank.Entity.Client;
 
 import java.util.List;
