@@ -35,6 +35,8 @@ public class Account {
     private Date createdDate;
 
     public Account() {
+        this.accountBalance = 0;
+        this.accountStatus = "Active";
         this.createdDate = new Date();
     }
 
