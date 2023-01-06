@@ -15,9 +15,10 @@ public class ClientServiceImplementation implements ClientService {
     @Autowired
     ClientRepository clientRepository;
 
+
     @Override
     public Client createClient(Client client) {
-        return clientRepository.save(client);
+        return this.clientRepository.save(client);
     }
 
     @Override

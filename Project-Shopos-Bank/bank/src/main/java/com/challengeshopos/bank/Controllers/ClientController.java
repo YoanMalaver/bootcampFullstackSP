@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/clients")
 public class ClientController {
 
@@ -27,6 +29,19 @@ public class ClientController {
         return clientService.getClientById(id)
                 .map(client -> new ResponseEntity<>(client, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    
+    @PutMapping("{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable int id, @RequestBody Client infoClient) {
+        Optional<Client> ClientOptional = clientService.getClientById(id);
+        if(!ClientOptional.isPresent()) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+
+        infoClient.setId(ClientOptional.get().getId());
+        clientService.createClient(infoClient);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping

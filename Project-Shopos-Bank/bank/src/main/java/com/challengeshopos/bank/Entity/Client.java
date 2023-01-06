@@ -1,8 +1,12 @@
 package com.challengeshopos.bank.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name ="clients")
@@ -15,13 +19,27 @@ public class Client {
     private String firtsNames;
     private String lastNames;
     private String email;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(value=TemporalType.DATE)
     private Date dateOfBirth;
-    private LocalDateTime createdDate;
+    private String telephone;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(value=TemporalType.DATE)
+    private Date createdDate;
     private String creationUser;
-    private LocalDateTime dateModification;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(value=TemporalType.DATE)
+    private Date dateModification;
     private String userModification;
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private Set<Account> accounts = new HashSet<>();
+
     public Client() {
+        this.createdDate = new Date();
     }
 
     public int getId() {
@@ -80,11 +98,19 @@ public class Client {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -96,11 +122,11 @@ public class Client {
         this.creationUser = creationUser;
     }
 
-    public LocalDateTime getDateModification() {
+    public Date getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(LocalDateTime dateModification) {
+    public void setDateModification(Date dateModification) {
         this.dateModification = dateModification;
     }
 
@@ -110,5 +136,16 @@ public class Client {
 
     public void setUserModification(String userModification) {
         this.userModification = userModification;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+        for (Account account : accounts) {
+            account.setClient(this);
+        }
     }
 }
