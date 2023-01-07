@@ -1,0 +1,57 @@
+<div class="container">
+  <form [formGroup]="forma" (ngSubmit)="guardar()">
+    <h4>Crear productos para el cliente</h4>
+    <hr />
+    <div class="form-group row">
+      <div class="form-group col-md-6" formGroupName="client">
+        <label for="nombres">Id cliente</label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder=""
+          formControlName="id"
+          [class.is-invalid]="idCliNoValid"
+        />
+      </div>
+      <div class="form-group col-md-6" formGroupName="product">
+        <label for="nombres">ID Producto</label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder=""
+          formControlName="id"
+          [class.is-invalid]="idProNoValid"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Tipo De Cuenta</label>
+        <select id="inputState" class="form-control" name="tipo">
+          <option selected>Selecciona</option>
+          <option></option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="nombres">Numero Cuenta</label>
+        <input
+          class="form-control"
+          type="text"
+          placeholder=""
+          formControlName="accountNumber"
+          [class.is-invalid]="accountNuNoValid"
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Producto</button>
+    <!-- <button type="button" class="btn btn-secondary">Cerrar</button> -->
+  </form>
+</div>
+
+<hr />
+<pre>
+  Estado del formulario: {{ forma.valid }}
+  <br>
+  Status: {{ forma.status }}
+</pre>
+<pre>
+  {{ forma.value | json }}
+</pre>

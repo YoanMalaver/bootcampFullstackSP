@@ -29,4 +29,8 @@ export class ProductComponent implements OnInit {
       }
     });
   }
+
+  account() {
+    this._router.navigate(['create-account']);
+  }
 }

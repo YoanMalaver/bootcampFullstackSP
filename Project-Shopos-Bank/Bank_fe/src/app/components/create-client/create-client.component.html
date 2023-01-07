@@ -52,6 +52,8 @@
           type="email"
           class="form-control"
           name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          required
           [(ngModel)]="newClient.email"
         />
       </div>
