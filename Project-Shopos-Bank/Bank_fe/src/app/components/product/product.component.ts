@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/shared/models/client.model';
 import { ClientService } from 'src/app/shared/services/client.service';
@@ -29,8 +29,11 @@ export class ProductComponent implements OnInit {
       }
     });
   }
-
+  @Output()
+  sendId: EventEmitter<number> = new EventEmitter<number>();
   account() {
+    this.sendId.emit(this.load.id);
+    console.log(this.load.id);
     this._router.navigate(['create-account']);
   }
 }

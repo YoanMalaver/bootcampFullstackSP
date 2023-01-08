@@ -3,33 +3,44 @@
     <h4>Crear productos para el cliente</h4>
     <hr />
     <div class="form-group row">
+      <div class="form-group col-md-6" formGroupName="product">
+        <label for="nombres">Id Producto</label>
+        <input
+          class="form-control"
+          type="number"
+          placeholder=""
+          formControlName="id"
+          [class.is-invalid]="idProNoValid"
+          [(ngModel)]="sel"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Tipo De Cuenta</label>
+        <select
+          id="inputState"
+          class="form-control"
+          name="tipocu"
+          formControlName="accountType"
+          [class.is-invalid]="accountyNoValid"
+          [(ngModel)]="selectedOrgMod"
+        >
+          <option>Seleccione un producto</option>
+          <option *ngFor="let product of products">
+            {{ product.productType }}
+          </option>
+        </select>
+      </div>
       <div class="form-group col-md-6" formGroupName="client">
         <label for="nombres">Id cliente</label>
         <input
           class="form-control"
-          type="text"
+          type="number"
           placeholder=""
           formControlName="id"
           [class.is-invalid]="idCliNoValid"
         />
       </div>
-      <div class="form-group col-md-6" formGroupName="product">
-        <label for="nombres">ID Producto</label>
-        <input
-          class="form-control"
-          type="text"
-          placeholder=""
-          formControlName="id"
-          [class.is-invalid]="idProNoValid"
-        />
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputState">Tipo De Cuenta</label>
-        <select id="inputState" class="form-control" name="tipo">
-          <option selected>Selecciona</option>
-          <option></option>
-        </select>
-      </div>
+
       <div class="form-group col-md-6">
         <label for="nombres">Numero Cuenta</label>
         <input

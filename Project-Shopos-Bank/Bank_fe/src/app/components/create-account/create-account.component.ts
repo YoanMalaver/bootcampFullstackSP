@@ -1,17 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Product } from 'src/app/shared/models/product.model';
+import { AccountService } from 'src/app/shared/services/account.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss'],
 })
-export class CreateAccountComponent {
+export class CreateAccountComponent implements OnInit {
   forma!: FormGroup;
+  sel!: number;
 
-  constructor(private fb: FormBuilder) {
+  selectedOrg: Product = new Product();
+  products: Product[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private _productService: ProductService,
+    private _accountService: AccountService,
+    private _router: Router
+  ) {
     this.createForm();
     this.loadDataForm();
+  }
+  get selectedOrgMod() {
+    return this.selectedOrg.productType;
+  }
+
+  set selectedOrgMod(value) {
+    if (value == 'Cuenta Corriente') {
+      this.sel = 1;
+    } else if (value == 'Cuenta De Ahorros') {
+      this.sel = 2;
+    }
+    this.sel;
+  }
+
+  ngOnInit(): void {
+    this._productService.getProducts().subscribe((products) => {
+      this.products = products;
+      console.log(products);
+    });
   }
 
   get idCliNoValid() {
@@ -38,13 +70,20 @@ export class CreateAccountComponent {
       this.forma.get('accountNumber')?.touched
     );
   }
+
+  get accounValid() {
+    return (
+      this.forma.get('accounType.value')?.valid &&
+      this.forma.get('accountType')?.touched
+    );
+  }
   createForm() {
     this.forma = this.fb.group({
       client: this.fb.group({
         id: ['', Validators.required],
       }),
       product: this.fb.group({
-        id: ['', Validators.required],
+        id: [''],
       }),
       accountType: [''],
       accountNumber: ['', Validators.required],
@@ -57,7 +96,7 @@ export class CreateAccountComponent {
       accountNumber: '',
       accountType: '',
       client: {
-        id: 2,
+        id: 0,
       },
       product: {
         id: 1,
@@ -66,8 +105,10 @@ export class CreateAccountComponent {
   }
 
   guardar() {
-    console.log(this.forma);
-
+    console.log(this.forma.value);
+    this._accountService.createAccount(this.forma.value).subscribe((res) => {
+      this._router.navigate(['/view-clients']);
+    });
     return Object.values(this.forma.controls).forEach((control) => {
       if (control instanceof FormGroup) {
         Object.values(control.controls).forEach((control) =>

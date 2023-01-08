@@ -1,15 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Client } from '../models/client.model';
+import { Observable } from 'rxjs';
+import { environment } from 'src/enviroments/environment';
+import { Account, Client } from '../models/client.model';
 import { ClientService } from './client.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService implements OnInit {
+  public url: string = `${environment.ApiUrl}/api/accounts`;
   client: Client = new Client();
 
   constructor(
+    public http: HttpClient,
     private _activateRoute: ActivatedRoute,
     private _clientService: ClientService
   ) {}
@@ -27,5 +32,10 @@ export class AccountService implements OnInit {
           .subscribe((res) => (this.client = res));
       }
     });
+  }
+
+  //Crear una cuenta a un cliente
+  createAccount(account: Account): Observable<Account> {
+    return this.http.post<Account>(this.url, account);
   }
 }
