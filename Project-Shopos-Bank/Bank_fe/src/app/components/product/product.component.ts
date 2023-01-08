@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/shared/models/client.model';
 import { ClientService } from 'src/app/shared/services/client.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +14,7 @@ export class ProductComponent implements OnInit {
   load: Client = new Client();
 
   constructor(
+    public _productService: ProductService,
     private _activateRoute: ActivatedRoute,
     private _clientService: ClientService,
     private _router: Router

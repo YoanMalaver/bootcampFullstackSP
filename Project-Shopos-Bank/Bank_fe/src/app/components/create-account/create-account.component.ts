@@ -12,14 +12,19 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 export class CreateAccountComponent implements OnInit {
   forma!: FormGroup;
-  sel!: number;
 
+  // objeto para guardar la seccion del produto del formulario
   selectedOrg: Product = new Product();
+  sel!: number;
+  //modelo de el producto id y tipo producto
   products: Product[] = [];
+
+  // input idcliente actual
+  @Input() idCli!: number;
 
   constructor(
     private fb: FormBuilder,
-    private _productService: ProductService,
+    public _productService: ProductService,
     private _accountService: AccountService,
     private _router: Router
   ) {
@@ -83,7 +88,7 @@ export class CreateAccountComponent implements OnInit {
         id: ['', Validators.required],
       }),
       product: this.fb.group({
-        id: [''],
+        id: ['', Validators.pattern('^[1-2]*$')],
       }),
       accountType: [''],
       accountNumber: ['', Validators.required],
@@ -104,10 +109,10 @@ export class CreateAccountComponent implements OnInit {
     });
   }
 
-  guardar() {
+  guardar(idx: number) {
     console.log(this.forma.value);
     this._accountService.createAccount(this.forma.value).subscribe((res) => {
-      this._router.navigate(['/view-clients']);
+      this._router.navigate(['/manage-client', idx]);
     });
     return Object.values(this.forma.controls).forEach((control) => {
       if (control instanceof FormGroup) {

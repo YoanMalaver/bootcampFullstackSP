@@ -1,4 +1,8 @@
-<button type="submit" class="btn btn-success col-md-3" (click)="account()">
+<button
+  (click)="_productService.showModal()"
+  type="submit"
+  class="btn btn-success col-md-3"
+>
   Crear Producto
 </button>
 <hr />
@@ -9,6 +13,7 @@
     </div>
   </div>
 </div>
+<app-create-account [idCli]="load.id"></app-create-account>
 <form action="" class="list-group" *ngFor="let account of load.accounts">
   <h5>{{ account.accountType }}</h5>
   <li class="list-group-item">Número de Cuenta: {{ account.accountNumber }}</li>

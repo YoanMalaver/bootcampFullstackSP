@@ -10,6 +10,7 @@ import { Product } from '../models/product.model';
 export class ProductService {
   public url: string = `${environment.ApiUrl}/api/products`;
   public oculto: string = 'oculto';
+
   constructor(public http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
