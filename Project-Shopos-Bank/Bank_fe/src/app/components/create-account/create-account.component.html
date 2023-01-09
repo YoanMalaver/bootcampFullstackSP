@@ -71,11 +71,12 @@
                     placeholder=""
                     formControlName="accountNumber"
                     [class.is-invalid]="accountNuNoValid"
+                    [(ngModel)]="numberAcco"
                   />
                 </div>
               </div>
               <button
-                (click)="_productService.hideModal()"
+                (click)="formValid()"
                 type="submit"
                 class="btn btn-primary"
               >
@@ -85,7 +86,7 @@
             </form>
           </div>
 
-          <!-- <hr />
+          <hr />
           <pre>
             Estado del formulario: {{ forma.valid }}
             <br>
@@ -93,7 +94,7 @@
           </pre>
           <pre>
             {{ forma.value | json }}
-          </pre> -->
+          </pre>
         </div>
       </div>
     </div>

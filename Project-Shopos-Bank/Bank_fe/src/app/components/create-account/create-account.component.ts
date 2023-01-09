@@ -16,6 +16,7 @@ export class CreateAccountComponent implements OnInit {
   // objeto para guardar la seccion del produto del formulario
   selectedOrg: Product = new Product();
   sel!: number;
+  numberAcco!: string;
   //modelo de el producto id y tipo producto
   products: Product[] = [];
 
@@ -37,8 +38,15 @@ export class CreateAccountComponent implements OnInit {
 
   set selectedOrgMod(value) {
     if (value == 'Cuenta Corriente') {
+      this._productService.getNumber(value).subscribe((resp) => {
+        this.numberAcco = resp;
+      });
+      console.log(this.forma.value.accountNumber);
       this.sel = 1;
     } else if (value == 'Cuenta De Ahorros') {
+      this._productService.getNumber(value).subscribe((resp) => {
+        this.numberAcco = resp;
+      });
       this.sel = 2;
     }
     this.sel;
@@ -88,7 +96,7 @@ export class CreateAccountComponent implements OnInit {
         id: ['', Validators.required],
       }),
       product: this.fb.group({
-        id: ['', Validators.pattern('^[1-2]*$')],
+        id: ['', Validators.pattern('^[0-9]*$')],
       }),
       accountType: [''],
       accountNumber: ['', Validators.required],
@@ -123,5 +131,11 @@ export class CreateAccountComponent implements OnInit {
         control.markAsTouched();
       }
     });
+  }
+
+  formValid() {
+    if (this.forma.valid == true) {
+      this._productService.hideModal();
+    }
   }
 }

@@ -1,6 +1,5 @@
 package com.challengeshopos.bank.Controllers;
 
-import com.challengeshopos.bank.Entity.Client;
 import com.challengeshopos.bank.Entity.Product;
 import com.challengeshopos.bank.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/products")
@@ -57,4 +57,10 @@ public class ProductController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/random-number")
+    public String generateCode(@RequestParam String n) {
+        return productService.generateCode(n);
+    }
+
 }

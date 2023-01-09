@@ -9,12 +9,16 @@ import { Product } from '../models/product.model';
 })
 export class ProductService {
   public url: string = `${environment.ApiUrl}/api/products`;
+  public urlnumber: string = `${this.url}/random-number?n=`;
   public oculto: string = 'oculto';
 
   constructor(public http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.url);
+  }
+  getNumber(accountT: string): Observable<string> {
+    return this.http.get<string>(this.urlnumber + accountT);
   }
 
   hideModal() {
