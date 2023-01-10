@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "accounts")
@@ -61,6 +63,9 @@ public class Account {
     private Date dateModification;
 
     private String userModification;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Transaction> transactions = new HashSet<>();
 
     public Account() {
         this.accountBalance = 0;
@@ -170,5 +175,16 @@ public class Account {
 
     public void setUserModification(String userModification) {
         this.userModification = userModification;
+    }
+
+    public Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
+        for(Transaction transaction: transactions) {
+            transaction.setAccount(this);
+        }
     }
 }

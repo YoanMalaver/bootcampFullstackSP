@@ -1,7 +1,7 @@
 package com.challengeshopos.bank.Service;
 
 import com.challengeshopos.bank.Entity.Account;
-import com.challengeshopos.bank.Repository.AccountRepository;
+import com.challengeshopos.bank.Entity.Repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

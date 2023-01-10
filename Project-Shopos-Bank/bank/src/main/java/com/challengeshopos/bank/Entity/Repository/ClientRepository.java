@@ -1,4 +1,4 @@
-package com.challengeshopos.bank.Repository;
+package com.challengeshopos.bank.Entity.Repository;
 
 import com.challengeshopos.bank.Entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
