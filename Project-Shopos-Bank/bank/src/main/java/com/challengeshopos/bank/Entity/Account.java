@@ -27,16 +27,44 @@ public class Account {
     private String accountType;
     private String accountNumber;
     private Integer accountBalance;
+    private Integer accountAvailableBalance;
+    private boolean exemptGMF;
+
     private String accountStatus;
+
+    public enum AccountStatus {
+        ACTIVE("Activate"),
+        INACTIVE("Inactive"),
+        CANCELLED("Cancelled");
+        private final String name;
+
+        AccountStatus(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(value=TemporalType.DATE)
     private Date createdDate;
 
+    private String creationUser;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Temporal(value=TemporalType.DATE)
+    private Date dateModification;
+
+    private String userModification;
+
     public Account() {
         this.accountBalance = 0;
-        this.accountStatus = "Active";
+        this.accountStatus = AccountStatus.ACTIVE.getName();
         this.createdDate = new Date();
     }
 
@@ -88,6 +116,22 @@ public class Account {
         this.accountBalance = accountBalance;
     }
 
+    public Integer getAccountAvailableBalance() {
+        return accountAvailableBalance;
+    }
+
+    public void setAccountAvailableBalance(Integer accountAvailableBalance) {
+        this.accountAvailableBalance = accountAvailableBalance;
+    }
+
+    public boolean isExemptGMF() {
+        return exemptGMF;
+    }
+
+    public void setExemptGMF(boolean exemptGMF) {
+        this.exemptGMF = exemptGMF;
+    }
+
     public String getAccountStatus() {
         return accountStatus;
     }
@@ -102,5 +146,29 @@ public class Account {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(String creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public Date getDateModification() {
+        return dateModification;
+    }
+
+    public void setDateModification(Date dateModification) {
+        this.dateModification = dateModification;
+    }
+
+    public String getUserModification() {
+        return userModification;
+    }
+
+    public void setUserModification(String userModification) {
+        this.userModification = userModification;
     }
 }
