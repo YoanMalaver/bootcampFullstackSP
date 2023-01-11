@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductComponent } from './product/product.component';
 import { OptionsClientComponent } from './options-client/options-client.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,14 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     OptionsClientComponent,
     CreateAccountComponent,
   ],
-  imports: [CommonModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
   exports: [NavbarComponent],
 })
 export class ComponentsModule {}

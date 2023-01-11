@@ -1,69 +1,121 @@
 <!-- uso de ngModel para mapear el modelo -->
 <div class="container animated fadeIn fast">
-  <form class="border border-dark rounded" name="form1">
+  <form
+    class="border border-dark rounded"
+    name="form1"
+    (ngSubmit)="addClient(forma)"
+    #forma="ngForm"
+  >
     <h1>{{ title }}</h1>
     <hr />
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="nombres">Nombres</label>
         <input
-          type="text"
           class="form-control"
-          placeholder=""
-          name="firts"
+          type="text"
+          name="firtsname"
+          [class.is-invalid]="firtsname.invalid && firtsname.touched"
           [(ngModel)]="newClient.firtsNames"
+          ngModel
+          required
+          minlength="2"
+          #firtsname="ngModel"
         />
+        <small
+          *ngIf="firtsname.invalid && firtsname.touched"
+          class="form-text text-danger"
+          >El nombre deben ser mayor a 2 letras</small
+        >
       </div>
       <div class="form-group col-md-6">
         <label for="formGroupExampleInput2">Apellidos</label>
         <input
-          type="text"
           class="form-control"
-          placeholder=""
-          name="apellidos"
+          type="text"
+          name="lastname"
+          [class.is-invalid]="lastname.invalid && lastname.touched"
           [(ngModel)]="newClient.lastNames"
+          ngModel
+          required
+          minlength="2"
+          #lastname="ngModel"
         />
+        <small
+          *ngIf="lastname.invalid && lastname.touched"
+          class="form-text text-danger"
+          >Los apellidos deben ser mayor a 2 letras</small
+        >
       </div>
       <div class="form-group col-md-2">
         <label for="inputState">Tipo Identificación</label>
         <select
-          id="inputState"
           class="form-control"
-          name="tipo"
+          id="inputState"
+          name="typeid"
+          [class.is-invalid]="typeid.invalid && typeid.touched"
           [(ngModel)]="newClient.typeId"
+          ngModel
+          required
+          #typeid="ngModel"
         >
           <option selected>Selecciona</option>
           <option>CC | Cédula</option>
         </select>
+        <small
+          *ngIf="typeid.invalid && typeid.touched"
+          class="form-text text-danger"
+          >Por favor selecione una opción</small
+        >
       </div>
       <div class="form-group col-md-4">
-        <label for="identificacion">Identificacion</label>
+        <label for="identificacion">Identificación</label>
         <input
           type="text"
           class="form-control"
-          placeholder=""
-          name="identificacion"
+          name="identificationid"
+          [class.is-invalid]="
+            identificationid.invalid && identificationid.touched
+          "
           [(ngModel)]="newClient.identificationId"
+          ngModel
+          required
+          minlength="6"
+          maxlength="11"
+          #identificationid="ngModel"
         />
+        <small
+          *ngIf="identificationid.invalid && identificationid.touched"
+          class="form-text text-danger"
+          >La identificación debe se minimo de 6 números</small
+        >
       </div>
       <div class="form-group col-md-6">
         <label for="inputEmail">Email</label>
         <input
-          type="email"
           class="form-control"
+          type="email"
           name="email"
+          [class.is-invalid]="email.invalid && email.touched"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          ngModel
           required
           [(ngModel)]="newClient.email"
+          #email="ngModel"
         />
+        <small
+          *ngIf="email.invalid && email.touched"
+          class="form-text text-danger"
+          >Debe ingresar un correo valido</small
+        >
       </div>
       <div class="form-group col-md-3">
         <label class="form-label" for="phone">Phone number</label>
         <input
-          type="text"
           class="form-control"
+          type="text"
+          name="telephone"
           data-mdb-input-mask="+48 999-999-999"
-          name="telefono"
           [(ngModel)]="newClient.telephone"
         />
       </div>
@@ -71,18 +123,33 @@
         <label for="form-label">Fecha de nacimiento</label>
         <input
           type="date"
-          name="fechaNacimiento"
+          name="dateofbirth"
           class="form-control"
+          [class.is-invalid]="dateofbirth.invalid && dateofbirth.touched"
           [(ngModel)]="newClient.dateOfBirth"
+          ngModel
+          required
+          #dateofbirth="ngModel"
         />
+        <small
+          *ngIf="dateofbirth.invalid && dateofbirth.touched"
+          class="form-text text-danger"
+        ></small>
       </div>
     </div>
-    <button
-      type="submit"
-      class="btn btn-primary col-md-6 form-control"
-      (click)="addClient()"
-    >
+    <button type="submit" class="btn btn-primary col-md-6 form-control">
       Crear
     </button>
   </form>
+</div>
+<div class="container">
+  <hr />
+  <pre>
+  Estado del formulario: {{ forma.valid }}
+  <br>
+  Status: {{ forma.status }}
+  </pre>
+  <pre
+    >{{ forma.value | json }}
+  </pre>
 </div>

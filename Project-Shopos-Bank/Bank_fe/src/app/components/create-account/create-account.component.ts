@@ -119,23 +119,21 @@ export class CreateAccountComponent implements OnInit {
 
   guardar(idx: number) {
     console.log(this.forma.value);
-    this._accountService.createAccount(this.forma.value).subscribe((res) => {
-      this._router.navigate(['/manage-client', idx]);
-    });
-    return Object.values(this.forma.controls).forEach((control) => {
-      if (control instanceof FormGroup) {
-        Object.values(control.controls).forEach((control) =>
-          control.markAsTouched()
-        );
-      } else {
-        control.markAsTouched();
-      }
-    });
-  }
-
-  formValid() {
     if (this.forma.valid == true) {
+      this._accountService.createAccount(this.forma.value).subscribe((res) => {
+        this._router.navigate(['/manage-client', idx]);
+      });
       this._productService.hideModal();
+    } else {
+      return Object.values(this.forma.controls).forEach((control) => {
+        if (control instanceof FormGroup) {
+          Object.values(control.controls).forEach((control) =>
+            control.markAsTouched()
+          );
+        } else {
+          control.markAsTouched();
+        }
+      });
     }
   }
 }
