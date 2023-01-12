@@ -1,6 +1,7 @@
 package com.challengeshopos.bank.Controllers;
 
 import com.challengeshopos.bank.Entity.Client;
+import com.challengeshopos.bank.Entity.Repository.ClientRepository;
 import com.challengeshopos.bank.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ public class ClientController {
     //Inyectar logica de negocio
     @Autowired
     ClientService clientService;
+    @Autowired
+    private ClientRepository clientRepository;
 
     @GetMapping
     public ResponseEntity<List<Client>> getClients() {
@@ -30,18 +33,20 @@ public class ClientController {
                 .map(client -> new ResponseEntity<>(client, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    
+
     @PutMapping("{id}")
     public ResponseEntity<Client> updateClient(@PathVariable int id, @RequestBody Client infoClient) {
-        Optional<Client> ClientOptional = clientService.getClientById(id);
-        if(!ClientOptional.isPresent()) {
+        Optional<Client> clientOptional = clientService.getClientById(id);
+        if(!clientOptional.isPresent()) {
             return ResponseEntity.unprocessableEntity().build();
         }
 
-        infoClient.setId(ClientOptional.get().getId());
-        clientService.createClient(infoClient);
+        infoClient.setId(clientOptional.get().getId());
+        infoClient.setAccounts(clientOptional.get().getAccounts());
+        infoClient.setDateModification(clientOptional.get().getDateModification());
+        Client updateClient = clientRepository.save(infoClient);
+        return ResponseEntity.ok(updateClient);
 
-        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
