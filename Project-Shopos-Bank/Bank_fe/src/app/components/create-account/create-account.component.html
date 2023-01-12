@@ -80,17 +80,18 @@
               </button>
               <!-- <button type="button" class="btn btn-secondary">Cerrar</button> -->
             </form>
+            <div class="container">
+              <hr />
+              <pre>
+              Estado del formulario: {{ forma.valid }}
+              <br>
+              Status: {{ forma.status }}
+              </pre>
+              <pre
+                >{{ forma.value | json }}
+              </pre>
+            </div>
           </div>
-
-          <hr />
-          <pre>
-            Estado del formulario: {{ forma.valid }}
-            <br>
-            Status: {{ forma.status }}
-          </pre>
-          <pre>
-            {{ forma.value | json }}
-          </pre>
         </div>
       </div>
     </div>

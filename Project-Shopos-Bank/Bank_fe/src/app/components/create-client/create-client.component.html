@@ -98,9 +98,9 @@
           name="email"
           [class.is-invalid]="email.invalid && email.touched"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          [(ngModel)]="newClient.email"
           ngModel
           required
-          [(ngModel)]="newClient.email"
           #email="ngModel"
         />
         <small
@@ -117,6 +117,8 @@
           name="telephone"
           data-mdb-input-mask="+48 999-999-999"
           [(ngModel)]="newClient.telephone"
+          ngModel
+          #telephone="ngModel"
         />
       </div>
       <div class="form-group col-md-3 datepicker">
@@ -141,15 +143,4 @@
       Crear
     </button>
   </form>
-</div>
-<div class="container">
-  <hr />
-  <pre>
-  Estado del formulario: {{ forma.valid }}
-  <br>
-  Status: {{ forma.status }}
-  </pre>
-  <pre
-    >{{ forma.value | json }}
-  </pre>
 </div>

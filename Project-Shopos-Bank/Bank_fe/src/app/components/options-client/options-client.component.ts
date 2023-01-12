@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Client } from 'src/app/shared/models/client.model';
 import { ClientService } from 'src/app/shared/services/client.service';
 @Component({
@@ -14,6 +16,7 @@ export class OptionsClientComponent implements OnInit {
   constructor(
     private _activateRoute: ActivatedRoute,
     private _clientService: ClientService,
+    private _toastrSvc: ToastrService,
     private _router: Router
   ) {}
   ngOnInit(): void {
@@ -29,15 +32,17 @@ export class OptionsClientComponent implements OnInit {
     });
   }
 
-  updateClient(): void {
+  updateClient(forma: NgForm): void {
     this._clientService.updateClient(this.load).subscribe((res) => {
       this._router.navigate(['/manage-client', this.load.id]);
+      this._toastrSvc.success(`Actualizacion Exitosa`);
     });
   }
 
   deleteClient(client: Client): void {
     this._clientService.deleteClient(client.id).subscribe((res) => {
       this._router.navigate(['view-clients']);
+      this._toastrSvc.error(`Borrado Exitosamente`);
     });
   }
 }
