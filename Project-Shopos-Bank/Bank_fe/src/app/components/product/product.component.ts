@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from 'src/app/shared/models/client.model';
 import { ClientService } from 'src/app/shared/services/client.service';
+import { DataService } from 'src/app/shared/services/data.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class ProductComponent implements OnInit {
     public _productService: ProductService,
     private _activateRoute: ActivatedRoute,
     private _clientService: ClientService,
+    private _dataService: DataService,
     private _router: Router
   ) {}
   ngOnInit(): void {
@@ -37,5 +39,11 @@ export class ProductComponent implements OnInit {
     this.sendId.emit(this.load.id);
     console.log(this.load.id);
     this._router.navigate(['create-account']);
+  }
+
+  movements(id: number, idC: number) {
+    this._dataService.idAccount = id;
+    this._dataService.idClient = idC;
+    this._router.navigate(['./movements']);
   }
 }

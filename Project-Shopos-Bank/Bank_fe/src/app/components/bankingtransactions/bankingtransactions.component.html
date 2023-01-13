@@ -1,0 +1,48 @@
+<div class="container">
+  <button
+    type="button"
+    class="btn btn-info"
+    (click)="goBack(_dataService.idClient)"
+  >
+    Regresar
+  </button>
+  <div
+    class="row animated fadeIn fast"
+    *ngIf="transactions.transactions?.length == 0"
+  >
+    <div class="col-md-12">
+      <div class="alert alert-info" role="alert">
+        No Existen Movimientos Aún
+      </div>
+    </div>
+  </div>
+  <!-- <p>{{ _dataService.idAccount }}</p>  el id de la cuenta-->
+  <div
+    class="container p-2 animated fadeIn fast border border-dark rounded"
+    *ngIf="transactions.transactions.length > 0"
+  >
+    <h3>Movimientos</h3>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Fecha Transacción</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Movimiento Financiero</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Saldo final</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transa of transactions.transactions">
+          <td>{{ transa.createdDate }}</td>
+          <td>{{ transa.description }}</td>
+          <td>{{ transa.financialMovement }}</td>
+          <td>{{ transa.movementType }}</td>
+          <td>{{ transa.amountOfmoney }}</td>
+          <td>{{ transa.finalBalance }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

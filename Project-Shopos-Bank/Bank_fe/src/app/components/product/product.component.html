@@ -14,21 +14,42 @@
   </div>
 </div>
 <app-create-account [idCli]="load.id"></app-create-account>
-<form action="" class="list-group" *ngFor="let account of load.accounts">
-  <h5>{{ account.accountType }}</h5>
-  <li class="list-group-item">Número de Cuenta: {{ account.accountNumber }}</li>
-  <li class="list-group-item">Saldo: {{ account.accountBalance }}</li>
-  <li class="list-group-item">Estado: {{ account.accountStatus }}</li>
-  <li class="list-group-item">Fecha de creación: {{ account.createdDate }}</li>
-
+<div *ngFor="let account of load.accounts">
+  <form action="" class="list-group">
+    <h5>{{ account.accountType }}</h5>
+    <li class="list-group-item">
+      Número de Cuenta: {{ account.accountNumber }}
+    </li>
+    <li class="list-group-item">Saldo: {{ account.accountBalance }}</li>
+    <li class="list-group-item">Estado: {{ account.accountStatus }}</li>
+    <li class="list-group-item">
+      Fecha de creación: {{ account.createdDate }}
+    </li>
+  </form>
   <div class="d-flex align-items-center justify-content-end accions-buttons">
-    <button type="button" class="btn btn-outline-primary">Estado Cuenta</button>
-    <button type="button" class="btn btn-outline-success">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="movements(account.id, load.id)"
+    >
+      Estado Cuenta
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      [routerLink]="['create-client']"
+    >
       Realizar Transacción
     </button>
-    <button type="button" class="btn btn-outline-info">Cambiar Estado</button>
+    <button
+      type="button"
+      class="btn btn-outline-info"
+      [routerLink]="['create-client']"
+    >
+      Cambiar Estado
+    </button>
     <button type="button" class="btn btn-outline-danger">
       Cancelar Producto
     </button>
   </div>
-</form>
+</div>

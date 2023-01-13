@@ -11,6 +11,7 @@ import { OptionsClientComponent } from './options-client/options-client.componen
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BankingtransactionsComponent } from './bankingtransactions/bankingtransactions.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductComponent,
     OptionsClientComponent,
     CreateAccountComponent,
+    BankingtransactionsComponent,
   ],
   imports: [
     CommonModule,
