@@ -1,7 +1,7 @@
 package com.challengeshopos.bank.Controllers;
 
 import com.challengeshopos.bank.Entity.Client;
-import com.challengeshopos.bank.Entity.Repository.ClientRepository;
+import com.challengeshopos.bank.Repository.ClientRepository;
 import com.challengeshopos.bank.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

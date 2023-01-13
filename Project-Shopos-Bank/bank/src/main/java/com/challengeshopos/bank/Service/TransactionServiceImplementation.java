@@ -1,6 +1,6 @@
 package com.challengeshopos.bank.Service;
 
-import com.challengeshopos.bank.Entity.Repository.TransactionRepository;
+import com.challengeshopos.bank.Repository.TransactionRepository;
 import com.challengeshopos.bank.Entity.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -9,7 +9,6 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'create-client', component: CreateClientComponent },
-  { path: 'create-account', component: CreateAccountComponent },
   { path: 'view-clients', component: ViewClientsComponent },
   { path: 'manage-client/:id', component: ManageClientComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
