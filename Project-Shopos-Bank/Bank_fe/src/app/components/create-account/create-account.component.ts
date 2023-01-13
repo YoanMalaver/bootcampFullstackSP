@@ -20,7 +20,7 @@ export class CreateAccountComponent implements OnInit {
   //modelo de el producto id y tipo producto
   products: Product[] = [];
 
-  // input idcliente actual
+  // input idcliente actual por medio de parametro hijo
   @Input() idCli!: number;
 
   constructor(
@@ -32,6 +32,8 @@ export class CreateAccountComponent implements OnInit {
     this.createForm();
     this.loadDataForm();
   }
+  // obtengo la selecion del campo y lo utilizo para generar el numero ramdom desde el servicio
+  // este se conecta a backend y genera el numero dependiendo la entrada de texto
   get selectedOrgMod() {
     return this.selectedOrg.productType;
   }
@@ -98,7 +100,7 @@ export class CreateAccountComponent implements OnInit {
       product: this.fb.group({
         id: ['', Validators.pattern('^[0-9]*$')],
       }),
-      accountType: [''],
+      accountType: ['', Validators.required],
       accountNumber: ['', Validators.required],
     });
   }
